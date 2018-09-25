@@ -36,7 +36,6 @@ def intro():
 	print("There are many ways to play the game but there are good outcomes as well as bad ones")
 	print("Lets see how you play the game.")
 	start = input("Press enter to begin")
-	globals(start)
 	
 
 def R1(): # Room 1, Where you begin
