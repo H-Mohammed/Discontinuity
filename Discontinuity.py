@@ -12,8 +12,11 @@ import cursor
 
 #cursor.hide()
 start = 0
+location = "spawn"
 pick2 = 0
 pick3 = 0
+pick4 = 0
+time = 10
 choice1 = 0
 choice2 = 0
 choice3 = 0
@@ -28,6 +31,8 @@ def ps(str):
 	print("")
 
 def intro():
+	global start
+	'''
 	print("""
 ██████╗ ██╗███████╗ ██████╗ ██████╗ ███╗   ██╗████████╗██╗███╗   ██╗██╗   ██╗██╗████████╗██╗   ██╗
 ██╔══██╗██║██╔════╝██╔════╝██╔═══██╗████╗  ██║╚══██╔══╝██║████╗  ██║██║   ██║██║╚══██╔══╝╚██╗ ██╔╝
@@ -35,6 +40,12 @@ def intro():
 ██║  ██║██║╚════██║██║     ██║   ██║██║╚██╗██║   ██║   ██║██║╚██╗██║██║   ██║██║   ██║     ╚██╔╝  
 ██████╔╝██║███████║╚██████╗╚██████╔╝██║ ╚████║   ██║   ██║██║ ╚████║╚██████╔╝██║   ██║      ██║   
 ╚═════╝ ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝   ╚═╝      ╚═╝   
+""")'''
+	print("""
+ __     __   __   __       ___               ___     
+|  \\ | /__` /  ` /  \\ |\\ |  |  |  | | |\\ | |  |  \\ / 
+|__/ | .__/ \\__, \\__/ | \\|  |  \\__/ | | \\| |  |   |  
+                                                     
 """)
 	print("This game is a choose you own adventure.")
 	print("You have to make many different choices and your outcome will change depending on the choices you make.")
@@ -44,21 +55,29 @@ def intro():
 	
 
 def R1(): # Room 1, Where you begin
-	global choice1
-    ps("You wake up and u see a spear next to you, and you hear a voice, it says, 'Complete the sword and beat the boss before time runs out'.")
-    ps("You don't know  what that means, so you look around.")
-    ps("You see a forest and an open field in front of you, in the open field you see some creatures that you have never seen before and behind you there is a mountain that is too tall and steep to climb.")
-    ps("Now you have to make a choice, go to the forest, go to the open field, or try to climb the mountain.")
-    choice1 = input("Forest, open field, or mountain? ")
+	global location
+	ps("You wake up and u see a spear next to you, and you hear a voice, it says, 'Complete the sword and beat the boss before time runs out'.")
+	ps("You don't know  what that means, so you look around.")
+	ps("You see a forest and an open field in front of you, in the open field you see some creatures that you have never seen before and behind you there is a mountain that is too tall and steep to climb.")
+	ps("Now you have to make a choice, go to the forest, go to the open field, or try to climb the mountain.")
+	while location == "spawn":
+		choice1 = input("Forest, open field, or mountain? ")
+		if choice1 == "Forest" or choice1 == "forest":
+			location = "forest"
+		elif choice1 == "Mountain" or choice1 == "mountain":
+			ps("You tried to climb the mountain but failed to even get quarter of the way and because of that you wasted time")
+			ps("Now you have wasted time climbing the mountain where do you want to go, the forest or the open field")
+			time -= 1
+		elif choice1 == "open field" or choice1 == "Open Field" or choice1 == "open Field" or choice1 == "Open field" or choice1 == "field" or choice1 == "Field":
+			location = "plains"
+	
     
 
 
 
 def R2(): # Room 2, The forest
 	global pick2
-	global choice2
-	global choice3
-	global choice4
+	global location
 	global pick3
 	ps("The forest is heavily dense so you cant see the sky from the bottom and there seem to be some type of bioluminescent flowers around to light up the forest")
 	if pick2 == 0:
@@ -79,7 +98,7 @@ def R2(): # Room 2, The forest
 		if choice3 == "Y" or choice3 == "y":
 			ps("You climbed the tree")
 			ps("You see a castle, the open field, the mountains, and the strange sun.")
-			ps("There only seems to be 3/4 of the sun left, it's like someone cut a pizza slice out of the sun.")
+			ps("There only seems to be " + time + "/10 of the sun left, it's like someone cut a pizza slice out of the sun.")
 			ps("You don't know what will happen when the sun dissapears so you now have to make a choice")
 			ps("You climb down the tree and now you have to think about where to go.")
 			ps("Go back to where you began, go to the open field, or to the castle")
@@ -95,12 +114,24 @@ def R2(): # Room 2, The forest
 	else:
 		ps("Go back to where you began, go to the open field, or to the castle")
 		choice4 = input("Go back, forest, or open field")
+	if choice4 == "forest" or choice4 == "Forest":
+		ps("You go deeper into the forest and you seem to have left from the other side of the forest.")
+		ps("You see a huge castle that has only one way to get to the doors")
+		ps("There is a bridge to get to the doors but the bridge has really powerful defences")
+
 	
 
 def R3():
 	global choice5
 	ps("You are at the open field and you see some creatures, you dont know if they are hostile or not.")
-	choice5 = input("Do you attack them (You have the spear), approach to talk to them, or go to one of the places you have discovered")
+	ps("Do you attack them (You have the spear), approach to talk to them, or go to one of the places you have discovered")
+	choice5 = input("attack, talk or leave?")
+	if choice5 == "attack" or choice5 == "attack them":
+		ps("You attacked them without holding anything back.")
+		ps("")
+def R4():
+	ps("You see a huge castle that has only one way to get to the doors")
+	ps("There is a bridge to get to the doors but the bridge has really powerful defences")
 
 
 
@@ -114,12 +145,14 @@ while start == "":
 		R2()
 	if location == "plains":
 		R3()
-	if location == "castlef1":
+	if location == "castleout":
 		R4()
-	if location == "castlef2":
+	if location == "castlef1":
 		R5()
-	if location == "boss":
+	if location == "castlef2":
 		R6()
+	if location == "boss":
+		R7()
 
 
 
