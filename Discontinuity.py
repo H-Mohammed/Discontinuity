@@ -13,7 +13,8 @@ location = "spawn"
 pick2 = 0
 pick3 = 0
 pick4 = 0
-time1 = 10
+pick5 = 0
+time1 = 1
 choice1 = 0
 choice2 = 0
 choice3 = 0
@@ -24,29 +25,13 @@ choice7 = 0
 choice6 = 0
 choice9 = 0
 choice10 = 0
+choice11 = 0
+choice12 = 0
+choice13 = 0
+choice14 = 0
 s1 = 0
 power = 0
-
-def reset():  # Reset all local and global variables
-	start = 0
-	location = "spawn"
-	pick2 = 0
-	pick3 = 0
-	pick4 = 0
-	time1 = 10
-	choice1 = 0
-	choice2 = 0
-	choice3 = 0
-	choice4 = 0
-	choice5 = 0
-	choice6 = 0
-	choice7 = 0
-	choice6 = 0
-	choice9 = 0
-	choice10 = 0
-	s1 = 0
-	power = 0
-
+	
 
 
 def ps(str): # Subroutine to Print Slowly
@@ -211,28 +196,14 @@ def R3(): # Location 3, The plains
 	global time1
 	global power
 	global start
-	ps("You are at the open field and you see some creatures, you dont know if they are hostile or not.")
-	ps("Do you attack them (You have the spear), approach to talk to them, or go to one of the places you have discovered")
-	choice5 = input("attack, talk or leave: ")
+	global pick5
+	if pick5 == 0:
+		ps("You are at the open field and you see some creatures, you dont know if they are hostile or not.")
+		ps("Do you attack them (You have the spear), approach to talk to them, or go to one of the places you have discovered")
+		choice5 = input("attack, talk or leave: ")
 
 
-	if choice5 == "attack" or choice5 == "attack them":
-		ps("You attacked them without holding anything back.")
-		ps("You kill the creatures and some sort of power flows into you empowering you")
-		ps("You try to summon this new power and you think that having a sword would be nice.")
-		ps("A sword suddenly appears in your hand, the sword has no weight but it is sharper than any sword you have used before.")
-		ps("You think of it becoming a bow and it slowly chapes into a bow.")
-		ps("You think this is a great power to have and it will be useful in the future if you have to fight anything else.")
-		power = 1
-		variable = 1
-
-
-	elif choice5 == "talk" or choice5 == "Talk":
-		ps("They attack you, do you want to run away or fight them?")
-		choice6  = input("Run or Fight: ")
-	
-
-		if choice6 == "fight" or choice6 == "Fight":
+		if choice5 == "attack" or choice5 == "attack them":
 			ps("You attacked them without holding anything back.")
 			ps("You kill the creatures and some sort of power flows into you empowering you")
 			ps("You try to summon this new power and you think that having a sword would be nice.")
@@ -241,34 +212,82 @@ def R3(): # Location 3, The plains
 			ps("You think this is a great power to have and it will be useful in the future if you have to fight anything else.")
 			power = 1
 			variable = 1
+			pick5 = 1
 
 
-		elif choice6 == "Run" or choice6 == "run":
-			choice7 = input("The forest or the mountains: ")
+		elif choice5 == "talk" or choice5 == "Talk":
+			ps("They attack you, do you want to run away or fight them?")
+			choice6  = input("Run or Fight: ")
+		
+
+			if choice6 == "fight" or choice6 == "Fight":
+				ps("You attacked them without holding anything back.")
+				ps("You kill the creatures and some sort of power flows into you empowering you")
+				ps("You try to summon this new power and you think that having a sword would be nice.")
+				ps("A sword suddenly appears in your hand, the sword has no weight but it is sharper than any sword you have used before.")
+				ps("You think of it becoming a bow and it slowly chapes into a bow.")
+				ps("You think this is a great power to have and it will be useful in the future if you have to fight anything else.")
+				power = 1
+				variable = 1
+				pick5 = 1
+
+
+			elif choice6 == "Run" or choice6 == "run":
+				choice7 = input("The forest or the mountains: ")
+		
+
+				if choice7 == "The Forest" or choice7 == "The forest" or choice7 == "Forest" or choice7 == "forest":
+					ps("You lose the creatures in the forest and they go back to where they were.")
+					ps("You got lucky that they arn't that smart or you wouldn't have gotten away")
+					ps("You now go back to the open field ")
+					R3()
+
+
+				elif choice7 == "Mountains" or choice7 == "Mountain" or choice7 == "mountains" or choice7 == "mountain" or choice7 == "The Mountains" or choice7 == "The Mountain" or choice7 == "The mountains" or choice7 == "The mountain" or choice7 == "the Mountains" or choice7 == "the Mountain" or choice7 == "the mountains" or choice7 == "the mountain":
+					ps("You run out of places to run and the creatures catch up with you and kill you.")
+					start = 0
+
+
+		elif choice5 == "leave" or choice5 == "Leave":
+			choice7 == input("Where do you go.(Forest or Mountains): ")
+		
+
+			if choice7 == "forest" or choice7 == "Forest":
+				location = "forest"
+		
+
+			elif choice7 == "Mountains" or choice7 == "Mountain" or choice7 == "mountains" or choice7 == "mountain":
+				location == "spawn"
 	
 
-			if choice7 == "The Forest" or choice7 == "The forest" or choice7 == "Forest" or choice7 == "forest":
-				ps("You lose the creatures in the forest and they go back to where they were.")
-				ps("You got lucky that they arn't that smart or you wouldn't have gotten away")
-				ps("You now go back to the open field ")
-				R3()
+	elif pick5 == 1 and pick3 == 1:
+		ps("You think that you should probably go to the castle now")
+		choice9 = input("Do you go to the castle or to another place (Castle, Forest, Mountains): ")
+		
+
+		if choice9 == "Castle" or choice9 == "castle":
+			location = "castleout"
 
 
-			elif choice7 == "Mountains" or choice7 == "Mountain" or choice7 == "mountains" or choice7 == "mountain" or choice7 == "The Mountains" or choice7 == "The Mountain" or choice7 == "The mountains" or choice7 == "The mountain" or choice7 == "the Mountains" or choice7 == "the Mountain" or choice7 == "the mountains" or choice7 == "the mountain":
-				ps("You run out of places to run and the creatures catch up with you and kill you.")
-				start = 0
-
-
-	elif choice5 == "leave" or choice5 == "Leave":
-		choice7 == input("Where do you go.(Forest or Mountains): ")
-	
-
-		if choice7 == "forest" or choice7 == "Forest":
+		elif choice9 == "Forest" or choice9 == "forest":
 			location = "forest"
-	
 
-		elif choice7 == "Mountains" or choice7 == "Mountain" or choice7 == "mountains" or choice7 == "mountain":
-			location == "spawn"
+
+		elif choice9 == "Mountains" or choice9 == "Mountain" or choice9 == "mountains" or choice9 == "mountain":
+			location = "spawn"
+
+
+	elif pick5 == 1 and pick3 == 0:
+		ps("You think that you should probably get a better view of the landscape by headding into the forest")
+		choice9 = input("Do you go to the forest or the mountains (Forest, Mountains): ")
+		
+
+		if choice9 == "Forest" or choice9 == "forest":
+			location = "forest"
+
+
+		elif choice9 == "Mountains" or choice9 == "Mountain" or choice9 == "mountains" or choice9 == "mountain":
+			location = "spawn"
 
 
 	if variable == 1 and pick3 == 1:
@@ -299,6 +318,7 @@ def R3(): # Location 3, The plains
 
 		elif choice9 == "Mountains" or choice9 == "Mountain" or choice9 == "mountains" or choice9 == "mountain":
 			location = "spawn"
+
 
 
 
@@ -342,6 +362,7 @@ def R4(): # Location 4, outside the castle
 
 		elif choice8 == "open field" or choice8 == "Open Field" or choice8 == "open Field" or choice8 == "Open field" or choice8 == "field" or choice8 == "Field":
 			location = "plains"
+
 
 
 
@@ -389,6 +410,7 @@ def R5(): # Location 5, Boss room
 			location = "plains"
 
 
+
 # Code starts here
 while play:
 	intro()
@@ -412,8 +434,31 @@ while play:
 			start = 0
 		time1 -= 1
 	restart = input("Do you wish to try again? (Y/N): ")
-	if restart == "Y" or restart == "y" or restart == "":
-		reset()
+	if restart == "Y" or restart == "y" or restart == "": #resets all variables
+		start = 0
+		location = "spawn"
+		pick2 = 0
+		pick3 = 0
+		pick4 = 0
+		pick5 = 0
+		time1 = 10
+		choice1 = 0
+		choice2 = 0
+		choice3 = 0
+		choice4 = 0
+		choice5 = 0
+		choice6 = 0
+		choice7 = 0
+		choice6 = 0
+		choice9 = 0
+		choice10 = 0
+		choice11 = 0
+		choice12 = 0
+		choice13 = 0
+		choice14 = 0
+		s1 = 0
+		power = 0
+
 	else:
 		ps("Thankyou for playing Discontinuity!")
 		sys.exit()
