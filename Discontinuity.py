@@ -228,6 +228,7 @@ def R3(): # Location 3, The plains
 		ps("You think of it becoming a bow and it slowly chapes into a bow.")
 		ps("You think this is a great power to have and it will be useful in the future if you have to fight anything else.")
 		power = 1
+		variable = 1
 
 
 	elif choice5 == "talk" or choice5 == "Talk":
@@ -241,6 +242,7 @@ def R3(): # Location 3, The plains
 			ps("You think of it becoming a bow and it slowly chapes into a bow.")
 			ps("You think this is a great power to have and it will be useful in the future if you have to fight anything else.")
 			power = 1
+			variable = 1
 
 
 		elif choice6 == "Run" or choice6 == "run":
@@ -265,7 +267,7 @@ def R3(): # Location 3, The plains
 			location == "spawn"
 
 
-	if (choice6 == "y" or choice6 == "Y" or choice5 == "attack" or choice5 == "attack them") and pick3 == 1:
+	if variable == 1 and pick3 == 1:
 		ps("You think that you should probably go to the castle now")
 		choice9 = input("Do you go to the castle or to another place (Castle, Forest, Mountains): ")
 		if choice9 == "Castle" or choice9 == "castle":
@@ -280,7 +282,7 @@ def R3(): # Location 3, The plains
 			location = "spawn"
 
 
-	elif (choice6 == "Y" or choice6 == "y" or choice5 == "attack" or choice5 == "attack them") and pick3 == 0:
+	elif variable == 1 and pick3 == 0:
 		ps("You think that you should probably get a better view of the landscape by headding into the forest")
 		choice9 = input("Do you go to the forest or the mountains (Forest, Mountains): ")
 		if choice9 == "Forest" or choice9 == "forest":
@@ -293,6 +295,7 @@ def R3(): # Location 3, The plains
 
 
 def R4(): # Location 4, outside the castle
+	global location
 	ps("You see a huge castle that has only one way to get to the doors")
 	ps("There is a bridge to get to the doors but the bridge has really powerful defences")
 	
@@ -393,13 +396,13 @@ while play:
 			R4()
 		elif location == "boss":
 			R5()
-		if time <= 0:
+		if time1 <= 0:
 			ps("You hear the voice again and it says 'Time is up, the shadow soldiers have been released'.")
 			ps("Immidiately you see many shadow creatures surround you and they can manipulate their bodies like whips.")
 			ps("They attack you and eveytime they hit you, it gives you a really bad burn.")
 			ps("You slowly die of excruciating pain, it feels like getting burned alive.")
 			start = 0
-		time -= 1
+		time1 -= 1
 	restart = input("Do you wish to try again? (Y/N): ")
 	if restart == "Y" or restart == "y" or restart == "":
 		reset()
