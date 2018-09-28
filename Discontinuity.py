@@ -312,7 +312,7 @@ def R4(): # Location 4, outside the castle
 		
 
 			if choice11 == "Forest" or choice11 == "forest":
-			location = "forest"
+				location = "forest"
 	
 
 			elif choice11 == "open field" or choice11 == "Open Field" or choice11 == "open Field" or choice11 == "Open field" or choice11 == "field" or choice11 == "Field":
