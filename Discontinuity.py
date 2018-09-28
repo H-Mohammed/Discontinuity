@@ -6,11 +6,7 @@ Date Created: 2018/09/21
 import sys
 import random
 import time
-import timeit
-import pprint
-import cursor
 
-#cursor.hide()
 play = True
 start = 0
 location = "spawn"
@@ -31,7 +27,7 @@ choice10 = 0
 s1 = 0
 power = 0
 
-def reset():
+def reset():  # Reset all local and global variables
 	start = 0
 	location = "spawn"
 	pick2 = 0
@@ -53,14 +49,14 @@ def reset():
 
 
 
-def ps(str):
+def ps(str): # Subroutine to Print Slowly
 	for x in str:
 			sys.stdout.write(x)
 			sys.stdout.flush()
 			time.sleep(0.01)
-	print("")
+	print("") 
 
-def intro():
+def intro(): # The Intro
 	global start
 	print("""
  __     __   __   __       ___               ___     
@@ -234,6 +230,8 @@ def R3(): # Location 3, The plains
 	elif choice5 == "talk" or choice5 == "Talk":
 		ps("They attack you, do you want to run away or fight them?")
 		choice6  = input("Run or Fight: ")
+	
+
 		if choice6 == "fight" or choice6 == "Fight":
 			ps("You attacked them without holding anything back.")
 			ps("You kill the creatures and some sort of power flows into you empowering you")
@@ -247,6 +245,8 @@ def R3(): # Location 3, The plains
 
 		elif choice6 == "Run" or choice6 == "run":
 			choice7 = input("The forest or the mountains: ")
+	
+
 			if choice7 == "The Forest" or choice7 == "The forest" or choice7 == "Forest" or choice7 == "forest":
 				ps("You lose the creatures in the forest and they go back to where they were.")
 				ps("You got lucky that they arn't that smart or you wouldn't have gotten away")
@@ -261,8 +261,12 @@ def R3(): # Location 3, The plains
 
 	elif choice5 == "leave" or choice5 == "Leave":
 		choice7 == input("Where do you go.(Forest or Mountains): ")
+	
+
 		if choice7 == "forest" or choice7 == "Forest":
 			location = "forest"
+	
+
 		elif choice7 == "Mountains" or choice7 == "Mountain" or choice7 == "mountains" or choice7 == "mountain":
 			location == "spawn"
 
@@ -270,6 +274,8 @@ def R3(): # Location 3, The plains
 	if variable == 1 and pick3 == 1:
 		ps("You think that you should probably go to the castle now")
 		choice9 = input("Do you go to the castle or to another place (Castle, Forest, Mountains): ")
+		
+
 		if choice9 == "Castle" or choice9 == "castle":
 			location = "castleout"
 
@@ -285,6 +291,8 @@ def R3(): # Location 3, The plains
 	elif variable == 1 and pick3 == 0:
 		ps("You think that you should probably get a better view of the landscape by headding into the forest")
 		choice9 = input("Do you go to the forest or the mountains (Forest, Mountains): ")
+		
+
 		if choice9 == "Forest" or choice9 == "forest":
 			location = "forest"
 
@@ -409,21 +417,3 @@ while play:
 	else:
 		ps("Thankyou for playing Discontinuity!")
 		sys.exit()
-
-
-
-
-
-
-#cursor.show()
-
-
-
-
-
-
-
-
-
-
-
